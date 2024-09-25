@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .background {
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            width: 78%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 22%;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            z-index: 3;
+            margin-right: 30px;
+        }
+
+        .login-panel {
+            background: white;
+            padding: 20px;
+            width: 300px;
+            z-index: 4;
+            position: relative;
+            margin-top: 25px;
+            margin-bottom: 120px;
+        }
+
+        .login-panel h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .login-panel form {
+            display: flex;
+            flex-direction: column;
+            top: 40px;
+        }
+
+        .login-panel label {
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .login-panel input {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-panel button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-panel button:hover {
+            background-color: #0056b3;
+        }
+
+        .forgot-password {
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .forgot-password a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="login-panel">
+            <h2>Connexion</h2>
+            <form onsubmit="submitForm(event)">
+                <label for="username">Identifiant</label>
+                <input type="text" id="username" name="username" placeholder="identifiant" required>
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                <button type="submit">Connexion</button>
+            </form>
+            <div class="forgot-password">
+                <a href="#">Mot de passe oublié ?</a>
+            </div>
+        </div>
+        <div class="logo">
+            <img src="logo.png" alt="EBM Rabat Logo">
+        </div>
+    </div>
+    <script>
+        function submitForm(event) {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Ouvrir le site de destination dans un nouvel onglet
+            const newWindow = window.open('https://ebr-secondaire.smartschool.be', '_blank');
+
+            // Attendre que le nouvel onglet soit chargé
+            newWindow.onload = function() {
+                // Pré-remplir les champs de connexion
+                newWindow.document.getElementById('username').value = username;
+                newWindow.document.getElementById('password').value = password;
+            };
+        }
+    </script>
+</body>
+</html>
