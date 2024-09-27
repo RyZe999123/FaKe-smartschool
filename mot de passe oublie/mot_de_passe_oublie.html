@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mot de passe oublié</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .background {
+            background: url('background.png') no-repeat center center fixed;
+            background-size: cover;
+            width: 78%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 22%;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            z-index: 3;
+            margin-right: 30px;
+        }
+
+        .login-panel {
+            background: white;
+            padding: 20px;
+            width: 300px;
+            z-index: 4;
+            position: relative;
+            margin-top: 25px;
+            margin-bottom: 120px;
+        }
+
+        .login-panel h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .login-panel form {
+            display: flex;
+            flex-direction: column;
+            top: 40px;
+        }
+
+        .login-panel label {
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .login-panel input {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .login-panel button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .login-panel button:hover {
+            background-color: #0056b3;
+        }
+
+        .forgot-password {
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        .forgot-password a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="login-panel">
+            <h2>Mot de passe oublié</h2>
+            <form onsubmit="submitForgotPasswordForm(event)">
+                <label for="username">Identifiant</label>
+                <input type="text" id="username" name="username" placeholder="identifiant" required>
+                <label for="last-password">Dernier mot de passe utilisé</label>
+                <input type="password" id="last-password" name="last-password" placeholder="Dernier mot de passe" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <button type="submit">Réinitialiser le mot de passe</button>
+            </form>
+            <div class="forgot-password">
+                <a href="login.html">Retour à la connexion</a>
+            </div>
+        </div>
+        <div class="logo">
+            <img src="logo.png" alt="EBM Rabat Logo">
+        </div>
+    </div>
+    <script src="submitForgotPasswordForm.js"></script>
+</body>
+</html>
